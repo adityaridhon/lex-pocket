@@ -11,7 +11,6 @@ class PasalScreen extends StatefulWidget {
 }
 
 class _PasalScreenState extends State<PasalScreen> {
-  // Instansiasi Controller
   final PasalController _pasalController = PasalController();
 
   List<PasalModel> _listPasal = [];
@@ -24,7 +23,6 @@ class _PasalScreenState extends State<PasalScreen> {
     _fetchPasalData();
   }
 
-  // Fungsi async untuk mengambil data pasal dari Controller
   Future<void> _fetchPasalData() async {
     setState(() {
       _isLoading = true;
@@ -32,7 +30,7 @@ class _PasalScreenState extends State<PasalScreen> {
     });
 
     try {
-      final data = await _pasalController.fetchLaws(limit: 10, offset: 0);
+      final data = await _pasalController.fetchLaws(limit: 10, offset: 2);
       setState(() {
         _listPasal = data;
         _isLoading = false;
@@ -48,8 +46,7 @@ class _PasalScreenState extends State<PasalScreen> {
   @override
   Widget build(BuildContext context) {
     double landscapeHori =
-        MediaQuery.of(context).padding.left +
-            MediaQuery.of(context).padding.right;
+        MediaQuery.of(context).padding.left + MediaQuery.of(context).padding.right;
     double lebarLayar = MediaQuery.of(context).size.width - landscapeHori;
     double x = 18;
     double lebarTengah = lebarLayar - (2 * x);
@@ -68,22 +65,29 @@ class _PasalScreenState extends State<PasalScreen> {
                 borderRadius: BorderRadius.all(Radius.circular(30)),
               ),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 4),
-                    child: const Text(
-                      'Selamat datang,',
-                      style: TextStyle(color: Colors.white70),
-                    ),
+                  Row(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(bottom: 4),
+                        child: const Text(
+                          'Selamat datang,',
+                          style: TextStyle(color: Colors.white70),
+                        ),
+                      ),
+                    ],
                   ),
-                  const Text(
-                    'Aditya Ridho',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  Row(
+                    children: [
+                      const Text(
+                        'Aditya Ridho',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
 
                   // Search Field Container
@@ -112,10 +116,16 @@ class _PasalScreenState extends State<PasalScreen> {
             // --- JUDUL SECTION ---
             Container(
               margin: EdgeInsets.only(left: x, right: x, bottom: 16),
-              width: lebarTengah,
-              child: const Text(
-                'Peraturan Terbaru',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              child: Row(
+                children: [
+                  Container(
+                    width: lebarTengah,
+                    child: const Text(
+                      'Peraturan Terbaru',
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
               ),
             ),
 
@@ -165,7 +175,6 @@ class _PasalScreenState extends State<PasalScreen> {
                 );
               }).toList(),
 
-            // Margin bawah pengganti SizedBox
             Container(
               margin: const EdgeInsets.only(bottom: 40),
             ),

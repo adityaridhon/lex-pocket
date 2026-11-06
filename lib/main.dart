@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:lex_pocket/screens/main_screen.dart';
 import 'screens/login_screen.dart';
+import 'screens/register_screen.dart';
+import 'screens/main_screen.dart';
+import 'screens/detail_pasal_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +24,13 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: LoginScreen(),
+      initialRoute: '/login',
+      routes: {
+        '/login': (context) => const LoginScreen(),
+        '/register': (context) => const RegisterScreen(),
+        '/main': (context) => const MainScreen(),
+        '/detail_pasal': (context) => const DetailPasalScreen(),
+      },
     );
   }
 }

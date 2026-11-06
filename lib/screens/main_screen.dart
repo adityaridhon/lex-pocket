@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'home_screen.dart';
 import 'pasal_screen.dart';
 import 'favorit_screen.dart';
 import 'profile_screen.dart';
@@ -15,7 +14,6 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = const [
-    HomeScreen(),
     PasalScreen(),
     FavoritScreen(),
     ProfileScreen(),
@@ -30,21 +28,18 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: IndexedStack(
         index: _selectedIndex,
         children: _pages,
       ),
+
       bottomNavigationBar: NavigationBar(
         selectedIndex: _selectedIndex,
         onDestinationSelected: _onTabSelected,
         backgroundColor: Colors.white,
         indicatorColor: const Color(0xFF006199).withOpacity(0.2),
         destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.home_outlined),
-            selectedIcon: Icon(Icons.home, color: Color(0xFF006199)),
-            label: 'Beranda',
-          ),
           NavigationDestination(
             icon: Icon(Icons.menu_book_outlined),
             selectedIcon: Icon(Icons.menu_book, color: Color(0xFF006199)),

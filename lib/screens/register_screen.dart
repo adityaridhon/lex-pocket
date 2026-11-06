@@ -13,168 +13,193 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double x = 24.0;
+    double lebarLayar = MediaQuery.of(context).size.width;
+    double lebarTengah = lebarLayar - (2 * x);
+    double lebarDalamField = lebarTengah - 2;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Row(
             children: [
-              const SizedBox(width: 30),
+              SizedBox(width: x),
               SizedBox(
-                width: MediaQuery.of(context).size.width - 60,
+                width: lebarTengah,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const SizedBox(height: 20),
+                    Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: const SizedBox(
+                            width: 24,
+                            child: Icon(Icons.arrow_back, color: Colors.black54),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 40),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: lebarTengah,
+                          child: const Text(
+                            'Lex Pocket',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 32,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF006199),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                     const SizedBox(height: 60),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset(
-                          'assets/logo-transparent.png',
-                          width: 80,
-                          height: 80,
-                          color: const Color(0xFF006199),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          'Lex Pocket',
-                          style: TextStyle(
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF006199),
+                        SizedBox(
+                          width: lebarTengah,
+                          child: const Text(
+                            'Create your Account',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black87,
+                            ),
                           ),
                         ),
-
                       ],
-                    ),
-                    const SizedBox(height: 4),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          'Buat akun baru dengan email dan password',
-                          style: TextStyle(
-                            fontSize: 15,
-                            color: Colors.grey,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 50),
-                    const Text(
-                      'Buat Akun Baru',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black87,
-                      ),
                     ),
                     const SizedBox(height: 24),
                     Container(
-                      width: MediaQuery.of(context).size.width - 60,
+                      width: lebarTengah,
                       height: 50,
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey.shade300),
+                        border: Border.all(color: Colors.grey.shade300, width: 1),
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: Row(
+                      child: Column(
                         children: [
-                          const SizedBox(width: 16),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width - 100,
-                            child: const TextField(
-                              decoration: InputDecoration(
-                                hintText: 'Email',
-                                hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
-                                border: InputBorder.none,
+                          Row(
+                            children: [
+                              const SizedBox(width: 16),
+                              SizedBox(
+                                width: lebarDalamField - 32,
+                                child: const TextField(
+                                  decoration: InputDecoration(
+                                    hintText: 'Email',
+                                    hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
+                                    border: InputBorder.none,
+                                  ),
+                                ),
                               ),
-                            ),
+                              const SizedBox(width: 16),
+                            ],
                           ),
                         ],
                       ),
                     ),
                     const SizedBox(height: 16),
                     Container(
-                      width: MediaQuery.of(context).size.width - 60,
+                      width: lebarTengah,
                       height: 50,
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey.shade300),
+                        border: Border.all(color: Colors.grey.shade300, width: 1),
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: Row(
+                      child: Column(
                         children: [
-                          const SizedBox(width: 16),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width - 130,
-                            child: TextField(
-                              obscureText: _isPasswordObscure,
-                              decoration: const InputDecoration(
-                                hintText: 'Password',
-                                hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
-                                border: InputBorder.none,
+                          Row(
+                            children: [
+                              const SizedBox(width: 16),
+                              SizedBox(
+                                width: lebarDalamField - 64,
+                                child: TextField(
+                                  obscureText: _isPasswordObscure,
+                                  decoration: const InputDecoration(
+                                    hintText: 'Password',
+                                    hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
+                                    border: InputBorder.none,
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                _isPasswordObscure = !_isPasswordObscure;
-                              });
-                            },
-                            child: Icon(
-                              _isPasswordObscure ? Icons.visibility_off : Icons.visibility,
-                              color: Colors.grey,
-                              size: 20,
-                            ),
+                              const SizedBox(width: 8),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    _isPasswordObscure = !_isPasswordObscure;
+                                  });
+                                },
+                                child: SizedBox(
+                                  width: 24,
+                                  child: Icon(
+                                    _isPasswordObscure ? Icons.visibility_off : Icons.visibility,
+                                    color: Colors.grey,
+                                    size: 20,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 16),
+                            ],
                           ),
                         ],
                       ),
                     ),
                     const SizedBox(height: 16),
                     Container(
-                      width: MediaQuery.of(context).size.width - 60,
+                      width: lebarTengah,
                       height: 50,
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey.shade300),
+                        border: Border.all(color: Colors.grey.shade300, width: 1),
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: Row(
+                      child: Column(
                         children: [
-                          const SizedBox(width: 16),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width - 130,
-                            child: TextField(
-                              obscureText: _isConfirmObscure,
-                              decoration: const InputDecoration(
-                                hintText: 'Confirm Password',
-                                hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
-                                border: InputBorder.none,
+                          Row(
+                            children: [
+                              const SizedBox(width: 16),
+                              SizedBox(
+                                width: lebarDalamField - 64,
+                                child: TextField(
+                                  obscureText: _isConfirmObscure,
+                                  decoration: const InputDecoration(
+                                    hintText: 'Confirm Password',
+                                    hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
+                                    border: InputBorder.none,
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                _isConfirmObscure = !_isConfirmObscure;
-                              });
-                            },
-                            child: Icon(
-                              _isConfirmObscure ? Icons.visibility_off : Icons.visibility,
-                              color: Colors.grey,
-                              size: 20,
-                            ),
+                              const SizedBox(width: 8),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    _isConfirmObscure = !_isConfirmObscure;
+                                  });
+                                },
+                                child: SizedBox(
+                                  width: 24,
+                                  child: Icon(
+                                    _isConfirmObscure ? Icons.visibility_off : Icons.visibility,
+                                    color: Colors.grey,
+                                    size: 20,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 16),
+                            ],
                           ),
                         ],
                       ),
                     ),
                     const SizedBox(height: 32),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width - 60,
+                      width: lebarTengah,
                       height: 50,
                       child: ElevatedButton(
                         onPressed: () {
@@ -188,7 +213,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ),
                         child: const Text(
-                          'Registrasi',
+                          'Sign up',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,
@@ -197,27 +222,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 40),
+                    const SizedBox(height: 60),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: RichText(
-                            text: const TextSpan(
-                              text: "Sudah Punya Akun? ",
-                              style: TextStyle(color: Colors.grey, fontSize: 13),
-                              children: [
-                                TextSpan(
-                                  text: 'Masuk',
-                                  style: TextStyle(
-                                    color: Color(0xFF006199),
-                                    fontWeight: FontWeight.bold,
+                        SizedBox(
+                          width: lebarTengah,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: RichText(
+                              textAlign: TextAlign.center,
+                              text: const TextSpan(
+                                text: "Already have an account? ",
+                                style: TextStyle(color: Colors.grey, fontSize: 13),
+                                children: [
+                                  TextSpan(
+                                    text: 'Sign in',
+                                    style: TextStyle(
+                                      color: Color(0xFF006199),
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -227,7 +255,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ],
                 ),
               ),
-              const SizedBox(width: 30),
+              SizedBox(width: x),
             ],
           ),
         ),

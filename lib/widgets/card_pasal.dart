@@ -34,7 +34,6 @@ class CardPasal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // --- KALKULASI MAZHAB GRID ABSOLUT ---
     double landscapeHori =
         MediaQuery.of(context).padding.left +
             MediaQuery.of(context).padding.right;
@@ -45,7 +44,7 @@ class CardPasal extends StatelessWidget {
     double xDalam = 14.0;
 
     double lebarTengah = lebarLayar - (2 * x);
-    double lebarDalamKartu = lebarTengah - 2; // dikurangi border 1px kiri-kanan
+    double lebarDalamKartu = lebarTengah - 2;
     double lebarKontenDalam = lebarDalamKartu - (2 * xDalam);
 
     Color statusColor = _getStatusColor(status);
@@ -67,7 +66,6 @@ class CardPasal extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    // --- ROW 1: TAGS (JENIS, NOMOR/TAHUN, STATUS) ---
                     Row(
                       children: [
                         // Badge Jenis
@@ -85,7 +83,6 @@ class CardPasal extends StatelessWidget {
 
                         Container(width: 8),
 
-                        // Nomor / Tahun (di-wrap Expanded agar tidak overflow)
                         Expanded(
                           child: Container(
                             margin: const EdgeInsets.only(right: 8),
@@ -122,7 +119,6 @@ class CardPasal extends StatelessWidget {
                       ],
                     ),
 
-                    // --- ROW 2: JUDUL KARTU ---
                     Row(
                       children: [
                         Container(
